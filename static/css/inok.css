@@ -312,6 +312,9 @@ section { position: relative; }
 .lang a.is-on { background: var(--bone); color: var(--ink); }
 .lang a:not(.is-on):hover { color: var(--bone); }
 @media (max-width: 760px) { .lang { margin-left: auto; } .top .btn { margin-left: 0; } }
+/* на узком телефоне длинная подпись кнопки бота не влезает в шапку */
+.lbl-short { display: none; }
+@media (max-width: 420px) { .lbl-long { display: none; } .lbl-short { display: inline; } }
 
 /* ---------- разбивка заголовков на слова ---------- */
 .sw { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.08em; margin-bottom: -0.08em; }

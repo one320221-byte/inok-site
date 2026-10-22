@@ -272,7 +272,14 @@
         $("#" + x.getAttribute("aria-controls")).hidden = !on;
       });
       moveInk(t);
-      t.scrollIntoView({ block: "nearest", inline: "nearest" });
+      // двигаем только полоску вкладок вбок (на телефоне), страницу не трогаем:
+      // scrollIntoView при загрузке уводил главную вниз, к приложениям
+      const strip = t.parentElement;
+      if (strip.scrollWidth > strip.clientWidth) {
+        const l = t.getBoundingClientRect().left - strip.getBoundingClientRect().left + strip.scrollLeft, r = l + t.offsetWidth;
+        if (l < strip.scrollLeft) strip.scrollLeft = l;
+        else if (r > strip.scrollLeft + strip.clientWidth) strip.scrollLeft = r - strip.clientWidth;
+      }
       const pane = $("#" + t.getAttribute("aria-controls"));
       if (animate && hasGsap && !reduce) gsap.from($$(".app-row, .plat-note", pane), { y: 22, opacity: 0, duration: 0.7, ease: "expo.out", stagger: 0.06 });
       if (ST) ST.refresh();

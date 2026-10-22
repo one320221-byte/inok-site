@@ -1,0 +1,715 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>INOK — the VPN that keeps quiet</title>
+  <meta name="description" content="INOK: a fast VLESS Reality VPN. No logs, no sign-up, log in with an account number.">
+  <meta name="theme-color" content="#000000">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="INOK — the VPN that keeps quiet">
+  <meta property="og:description" content="No logs, no sign-up. VLESS Reality, one free day.">
+  <meta property="og:image" content="https://inokvpn.duckdns.org/static/img/cover.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@400;600;700&family=Onest:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap&subset=cyrillic" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/inok.css?v=5">
+  <script>document.documentElement.classList.add("js");</script>
+  
+  <link rel="alternate" hreflang="ru" href="https://inokvpn.duckdns.org/"><link rel="alternate" hreflang="en" href="https://inokvpn.duckdns.org/en/">
+  <script>
+    // витрина без сервера: язык выбираем в браузере. Явный выбор RU/EN запоминаем, иначе смотрим язык системы
+    (function () {
+      var saved; try { saved = localStorage.getItem("lang"); } catch (e) {}
+      var ru = /^(ru|uk|be|kk|ky|uz|tg|hy|az|ka)/i.test(navigator.language || "ru");
+      var want = saved || (ru ? "ru" : "en"), here = location.pathname.indexOf("/en/") === 0 ? "en" : "ru";
+      if (want !== here && (saved || here === "ru")) location.replace(want === "en" ? "/en/" + location.hash : "/" + location.hash);
+      document.addEventListener("click", function (e) {
+        var a = e.target.closest && e.target.closest("[hreflang]");
+        if (a) try { localStorage.setItem("lang", a.getAttribute("hreflang")); } catch (e) {}
+      });
+    })();
+  </script>
+  
+</head>
+<body class="home">
+  
+  <a class="skip" href="#main">Skip to content</a>
+
+  
+  <div class="pre" id="pre" aria-hidden="true">
+    <div class="pre-half pre-top"></div>
+    <div class="pre-half pre-bot"></div>
+    <p class="pre-word">INOK</p>
+    <p class="pre-count"><span id="pre-n">000</span></p>
+    <i class="pre-line" id="pre-line"></i>
+  </div>
+  <div class="curtain" id="curtain" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <button type="button" class="taper" aria-label="Back to top" hidden>
+    <i class="taper-wax"></i><i class="taper-flame"></i>
+  </button>
+
+  <header class="top">
+    <a class="brand" href="/en/" aria-label="INOK home">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <defs><radialGradient id="mk-g"><stop offset="0" stop-color="#F0B44C" stop-opacity=".55"/><stop offset="1" stop-color="#F0B44C" stop-opacity="0"/></radialGradient></defs>
+        <path class="mk-hood" d="M16 1.5C13 3.5 7.5 8 6.5 16 6 20 5 25 3 30.5H29C27 25 26 20 25.5 16 24.5 8 19 3.5 16 1.5Z" fill="currentColor"/>
+        <path class="mk-face" d="M16 8.5C12.6 10.5 11 14.5 11 19 11 22 11.6 24.5 12.5 26.5H19.5C20.4 24.5 21 22 21 19 21 14.5 19.4 10.5 16 8.5Z" fill="#000"/>
+        <circle class="mk-glow" cx="16" cy="19.5" r="6" fill="url(#mk-g)"/>
+        <g class="mk-flame">
+          <path d="M16 13.2C17.7 15.8 19 17.6 19 19.8 19 21.6 17.7 23 16 23S13 21.6 13 19.8C13 17.6 14.3 15.8 16 13.2Z" fill="#F0B44C"/>
+          <path class="mk-core" d="M16 17.2C16.8 18.4 17.4 19.3 17.4 20.3 17.4 21.2 16.8 21.8 16 21.8S14.6 21.2 14.6 20.3C14.6 19.3 15.2 18.4 16 17.2Z" fill="#FFE6B0"/>
+        </g>
+      </svg>
+      <span data-scramble-hover>INOK</span>
+    </a>
+    <nav class="top-nav" aria-label="Main">
+      <a href="#vow" data-scramble-hover>The vow</a>
+      <a href="#disguise" data-scramble-hover>Disguise</a>
+      <a href="#plans" data-scramble-hover>Plans</a>
+      <a href="#apps" data-scramble-hover>Apps</a>
+      <a href="#faq" data-scramble-hover>FAQ</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <a href="/" class="" hreflang="ru" data-no-curtain>RU</a>
+      <a href="/en/" class="is-on" hreflang="en" data-no-curtain>EN</a>
+    </div>
+    
+      <a class="btn btn-ghost btn-sm" href="https://t.me/inokvpn_bot" data-magnet>Open the bot</a>
+    
+  </header>
+
+  <main id="main">
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-canvas" id="hero-canvas" aria-hidden="true"></div>
+  <div class="hero-copy">
+    <h1 class="wordmark" id="hero-title" aria-label="INOK">
+      <span class="wm-l" data-ch="I">I</span><span class="wm-l" data-ch="N">N</span><span class="wm-l" data-ch="O">O</span><span class="wm-l" data-ch="K">K</span>
+    </h1>
+    <p class="hero-lead">The VPN that keeps quiet.</p>
+    <p class="hero-sub">Opens what is blocked and never writes down where you go. No email, no phone: your account is twelve digits.</p>
+    <div class="hero-actions">
+      <a class="btn btn-solid" href="https://t.me/inokvpn_bot?start=trial" data-magnet>Take a free day</a>
+      <a class="btn btn-ghost" href="#plans" data-magnet>Plans from 125 ₽ a month</a>
+    </div>
+    
+  </div>
+  <p class="hero-hint" aria-hidden="true">Move the cursor: the candle is yours</p>
+  <p class="hero-scroll" aria-hidden="true"><i></i></p>
+</section>
+
+<section class="ticker" aria-label="What opens again">
+  
+  <div class="tick-row" data-dir="-1"><div class="tick-track"><span>YouTube</span><i>✦</i><span>Instagram</span><i>✦</i><span>ChatGPT</span><i>✦</i><span>Discord</span><i>✦</i><span>X</span><i>✦</i><span>Claude</span><i>✦</i><span>Netflix</span><i>✦</i><span>Spotify</span><i>✦</i><span>LinkedIn</span><i>✦</i><span>Facebook</span><i>✦</i><span>Medium</span><i>✦</i><span>Twitch</span><i>✦</i><span>YouTube</span><i>✦</i><span>Instagram</span><i>✦</i><span>ChatGPT</span><i>✦</i><span>Discord</span><i>✦</i><span>X</span><i>✦</i><span>Claude</span><i>✦</i><span>Netflix</span><i>✦</i><span>Spotify</span><i>✦</i><span>LinkedIn</span><i>✦</i><span>Facebook</span><i>✦</i><span>Medium</span><i>✦</i><span>Twitch</span><i>✦</i></div></div>
+  <div class="tick-row tick-ghost" data-dir="1"><div class="tick-track"><span>Twitch</span><i>✦</i><span>Medium</span><i>✦</i><span>Facebook</span><i>✦</i><span>LinkedIn</span><i>✦</i><span>Spotify</span><i>✦</i><span>Netflix</span><i>✦</i><span>Claude</span><i>✦</i><span>X</span><i>✦</i><span>Discord</span><i>✦</i><span>ChatGPT</span><i>✦</i><span>Instagram</span><i>✦</i><span>YouTube</span><i>✦</i><span>Twitch</span><i>✦</i><span>Medium</span><i>✦</i><span>Facebook</span><i>✦</i><span>LinkedIn</span><i>✦</i><span>Spotify</span><i>✦</i><span>Netflix</span><i>✦</i><span>Claude</span><i>✦</i><span>X</span><i>✦</i><span>Discord</span><i>✦</i><span>ChatGPT</span><i>✦</i><span>Instagram</span><i>✦</i><span>YouTube</span><i>✦</i></div></div>
+</section>
+
+<section class="vow" id="vow" aria-labelledby="vow-title">
+  <div class="vow-log" aria-hidden="true">
+    <p class="log-head">This is what an ordinary provider logs</p>
+    <ol class="log">
+      
+      <li><span class="log-t">03:14:07</span> <span class="log-r">89.110.47.12</span> <span class="log-r">youtube.com</span><i class="bar"></i></li>
+      
+      <li><span class="log-t">03:14:09</span> <span class="log-r">89.110.47.12</span> <span class="log-r">instagram.com</span><i class="bar"></i></li>
+      
+      <li><span class="log-t">03:15:41</span> <span class="log-r">89.110.47.12</span> <span class="log-r">chat.openai.com</span><i class="bar"></i></li>
+      
+      <li><span class="log-t">03:17:02</span> <span class="log-r">89.110.47.12</span> <span class="log-r">discord.com</span><i class="bar"></i></li>
+      
+      <li><span class="log-t">03:19:58</span> <span class="log-r">89.110.47.12</span> <span class="log-r">x.com</span><i class="bar"></i></li>
+      
+      <li><span class="log-t">03:22:16</span> <span class="log-r">89.110.47.12</span> <span class="log-r">linkedin.com</span><i class="bar"></i></li>
+      
+      <li><span class="log-t">03:24:30</span> <span class="log-r">89.110.47.12</span> <span class="log-r">medium.com</span><i class="bar"></i></li>
+      
+    </ol>
+    <p class="log-foot">We don&#39;t have these lines. We don&#39;t erase them — we never write them.</p>
+  </div>
+  <div class="vow-text">
+    <h2 class="h2" id="vow-title" data-split>A vow of silence</h2>
+    <dl class="vows">
+      <dt>Not a line about your sites</dt>
+      <dd>The server keeps no browsing or DNS history. You can&#39;t hand over what doesn&#39;t exist.</dd>
+      <dt>No email, no phone</dt>
+      <dd>Our Telegram bot hands out access: link, expiry and renewal in one chat. Your account is a twelve-digit number, no names.</dd>
+      <dt>No ads, no data sales</dt>
+      <dd>You pay with money, not with yourself. So nothing gets injected into your traffic.</dd>
+    </dl>
+  </div>
+</section>
+
+<section class="disguise" id="disguise" aria-labelledby="dis-title">
+  <div class="dis-pin">
+    <h2 class="h2" id="dis-title" data-split>Your provider sees an ordinary website</h2>
+    <div class="route" aria-hidden="true">
+      <i class="route-line"><i class="route-fill"></i></i>
+      <span class="rn" style="--x:0"><b>You</b><small>phone</small></span>
+      <span class="rn rn-dpi" style="--x:.36"><b>Provider</b><small>DPI</small><i class="scan"></i></span>
+      <span class="rn" style="--x:.7"><b>INOK</b><small>Germany</small></span>
+      <span class="rn" style="--x:1"><b>Website</b><small>open</small></span>
+      <span class="packet" id="packet"><span id="packet-t">youtube.com</span></span>
+    </div>
+    <ol class="dis-steps">
+      <li>You open YouTube. The request leaves your phone.</li>
+      <li>The app wraps it in encrypted TLS 1.3, like any HTTPS site.</li>
+      <li>Your provider inspects the packet, sees a plain website connection and lets it through.</li>
+      <li>In Germany INOK unwraps it and opens YouTube. Nothing is logged.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="facts" aria-label="INOK in numbers">
+  <div class="fact"><b data-count="0" data-from="9999">0</b><span>lines in a browsing log</span></div>
+  <div class="fact"><b data-count="3">3</b><span>devices on every plan</span></div>
+  <div class="fact"><b>∞</b><span>traffic, no cap</span></div>
+  <div class="fact"><b data-count="443">443</b><span>the port every website uses</span></div>
+</section>
+
+<section class="how" aria-labelledby="how-title">
+  <h2 class="h2" id="how-title" data-split>Connected in two minutes</h2>
+  <ol class="steps">
+    <li>
+      <span class="step-n">1</span>
+      <h3>Take a free day</h3>
+      <p>The button opens our Telegram bot. One tap and you have access, no sign-up.</p>
+    </li>
+    <li>
+      <span class="step-n">2</span>
+      <h3>Get an app</h3>
+      <p>Incy, Happ or another one for your device. The list is below, by platform.</p>
+    </li>
+    <li>
+      <span class="step-n">3</span>
+      <h3>Add the subscription</h3>
+      <p>One button in your bot chat, or paste the link. Every server is inside and updates itself.</p>
+    </li>
+  </ol>
+</section>
+
+<section class="vs" id="vs" aria-labelledby="vs-title">
+  <h2 class="h2" id="vs-title" data-split>A free VPN is paid for with you</h2>
+  <div class="vs-table" role="table" aria-label="Compared with free VPNs">
+    <div class="vs-row vs-head" role="row">
+      <span role="columnheader"></span>
+      <span role="columnheader">Free VPNs</span>
+      <span role="columnheader">INOK</span>
+    </div>
+    
+    
+    <div class="vs-row" role="row">
+      <span class="vs-k" role="rowheader">Browsing log</span>
+      <span class="vs-them" role="cell"><s>often kept and sold</s></span>
+      <span class="vs-us" role="cell">none at all</span>
+    </div>
+    
+    <div class="vs-row" role="row">
+      <span class="vs-k" role="rowheader">Ads</span>
+      <span class="vs-them" role="cell"><s>built into the app</s></span>
+      <span class="vs-us" role="cell">none, and we cut ads on sites too</span>
+    </div>
+    
+    <div class="vs-row" role="row">
+      <span class="vs-k" role="rowheader">Safety</span>
+      <span class="vs-them" role="cell"><s>none</s></span>
+      <span class="vs-us" role="cell">trackers, malware and phishing blocked</span>
+    </div>
+    
+    <div class="vs-row" role="row">
+      <span class="vs-k" role="rowheader">Protocol</span>
+      <span class="vs-them" role="cell"><s>OpenVPN and WireGuard, blocked in Russia</s></span>
+      <span class="vs-us" role="cell">VLESS Reality, looks like a normal site</span>
+    </div>
+    
+    <div class="vs-row" role="row">
+      <span class="vs-k" role="rowheader">Traffic</span>
+      <span class="vs-them" role="cell"><s>caps and crowded servers</s></span>
+      <span class="vs-us" role="cell">unlimited</span>
+    </div>
+    
+    <div class="vs-row" role="row">
+      <span class="vs-k" role="rowheader">Sign-up</span>
+      <span class="vs-them" role="cell"><s>email or phone</s></span>
+      <span class="vs-us" role="cell">twelve digits</span>
+    </div>
+    
+    <div class="vs-row" role="row">
+      <span class="vs-k" role="rowheader">Price</span>
+      <span class="vs-them" role="cell"><s>your data</s></span>
+      <span class="vs-us" role="cell">from 125 ₽ a month</span>
+    </div>
+    
+  </div>
+</section>
+
+<section class="plans" id="plans" aria-labelledby="plans-title">
+  <div class="plans-head">
+    <h2 class="h2" id="plans-title" data-split>Plans</h2>
+    <p class="muted">Each one: three devices, unlimited traffic, every server and VLESS Reality.</p>
+  </div>
+  <ul class="plan-list">
+    
+    <li class="plan">
+      <a href="https://t.me/inokvpn_bot?start=buy_m1" class="plan-link">
+        <span class="plan-title">1 month</span>
+        <span class="plan-note">To try it for real</span>
+        <span class="plan-price">150<small> ₽</small></span>
+        <span class="plan-go">Pay</span>
+      </a>
+    </li>
+    
+    <li class="plan plan-pick">
+      <a href="https://t.me/inokvpn_bot?start=buy_m3" class="plan-link">
+        <span class="plan-title">3 months</span>
+        <span class="plan-note">133 ₽ a month. Most popular</span>
+        <span class="plan-price">400<small> ₽</small></span>
+        <span class="plan-go">Pay</span>
+      </a>
+    </li>
+    
+    <li class="plan">
+      <a href="https://t.me/inokvpn_bot?start=buy_m6" class="plan-link">
+        <span class="plan-title">6 months</span>
+        <span class="plan-note">125 ₽ a month</span>
+        <span class="plan-price">750<small> ₽</small></span>
+        <span class="plan-go">Pay</span>
+      </a>
+    </li>
+    
+  </ul>
+</section>
+
+<section class="apps" id="apps" aria-labelledby="apps-title">
+  <div class="plans-head">
+    <h2 class="h2" id="apps-title" data-split>Apps</h2>
+    <p class="muted">Different on every device. We picked yours, but you can switch.</p>
+  </div>
+  
+<div class="plat" data-plat>
+  <div class="plat-tabs" role="tablist" aria-label="Platform">
+    
+    <button type="button" role="tab" class="plat-tab" id="tab-ios" aria-controls="pane-ios" aria-selected="true" data-plat-id="ios">iPhone &amp; iPad</button>
+    
+    <button type="button" role="tab" class="plat-tab" id="tab-android" aria-controls="pane-android" aria-selected="false" data-plat-id="android">Android</button>
+    
+    <button type="button" role="tab" class="plat-tab" id="tab-windows" aria-controls="pane-windows" aria-selected="false" data-plat-id="windows">Windows</button>
+    
+    <button type="button" role="tab" class="plat-tab" id="tab-macos" aria-controls="pane-macos" aria-selected="false" data-plat-id="macos">macOS</button>
+    
+    <button type="button" role="tab" class="plat-tab" id="tab-linux" aria-controls="pane-linux" aria-selected="false" data-plat-id="linux">Linux</button>
+    
+    <button type="button" role="tab" class="plat-tab" id="tab-tv" aria-controls="pane-tv" aria-selected="false" data-plat-id="tv">Android TV</button>
+    
+    <i class="plat-ink" aria-hidden="true"></i>
+  </div>
+  
+  <div class="plat-pane" role="tabpanel" id="pane-ios" aria-labelledby="tab-ios" >
+    <ol class="app-rows">
+      
+      <li class="app-row">
+        <span class="app-name">Incy<em class="app-pick">start here</em></span>
+        <span class="app-desc">The simplest: paste the link and connect. The current crowd favourite.</span>
+        <span class="app-acts">
+          <a class="app-get" href="https://apps.apple.com/us/app/incy/id6756943388" target="_blank" rel="noopener">Get it<small>App Store</small></a>
+          
+        </span>
+        <details class="app-how">
+          <summary>How to connect</summary>
+          <ol><li>Copy your subscription link in the bot.</li><li>Open Incy, tap “+” and paste the link.</li><li>Tap connect.</li></ol>
+        </details>
+      </li>
+      
+      <li class="app-row">
+        <span class="app-name">Happ</span>
+        <span class="app-desc">Picks the fastest server itself and opens Russian sites directly.</span>
+        <span class="app-acts">
+          <a class="app-get" href="https://apps.apple.com/app/happ-proxy-utility/id6504287215" target="_blank" rel="noopener">Get it<small>App Store</small></a>
+          
+        </span>
+        <details class="app-how">
+          <summary>How to connect</summary>
+          <ol><li>Tap “Add subscription” in the bot, or copy the link.</li><li>In Happ tap “+” → “Paste from clipboard”.</li><li>Pick “🇪🇺 Auto” and switch it on.</li></ol>
+        </details>
+      </li>
+      
+      <li class="app-row">
+        <span class="app-name">v2RayTun</span>
+        <span class="app-desc">Light and quick, with handy automatic server choice.</span>
+        <span class="app-acts">
+          <a class="app-get" href="https://apps.apple.com/app/v2raytun/id6476628951" target="_blank" rel="noopener">Get it<small>App Store</small></a>
+          
+        </span>
+        <details class="app-how">
+          <summary>How to connect</summary>
+          <ol><li>Tap “Add subscription” in the bot, or copy the link.</li><li>In v2RayTun tap “+” → “Import from clipboard”.</li><li>Pick a server and switch it on.</li></ol>
+        </details>
+      </li>
+      
+    </ol>
+    <p class="plat-note">Some of these apps are hidden in the Russian App Store. Switch your Apple ID region, download, then switch back.</p>
+  </div>
+  
+  <div class="plat-pane" role="tabpanel" id="pane-android" aria-labelledby="tab-android" hidden>
+    <ol class="app-rows">
+      
+      <li class="app-row">
+        <span class="app-name">Incy<em class="app-pick">start here</em></span>
+        <span class="app-desc">The simplest: paste the link and connect. The current crowd favourite.</span>
+        <span class="app-acts">
+          <a class="app-get" href="https://play.google.com/store/apps/details?id=llc.itdev.incy" target="_blank" rel="noopener">Get it<small>Google Play</small></a>
+          
+        </span>
+        <details class="app-how">
+          <summary>How to connect</summary>
+          <ol><li>Copy your subscription link in the bot.</li><li>Open Incy, tap “+” and paste the link.</li><li>Tap connect.</li></ol>
+        </details>
+      </li>
+      
+      <li class="app-row">
+        <span class="app-name">Happ</span>
+        <span class="app-desc">Picks the fastest server itself and opens Russian sites directly.</span>
+        <span class="app-acts">
+          <a class="app-get" href="https://play.google.com/store/apps/details?id=com.happproxy" target="_blank" rel="noopener">Get it<small>Google Play</small></a>
+          
+        </span>
+        <details class="app-how">
+          <summary>How to connect</summary>
+          <ol><li>Tap “Add subscription” in the bot, or copy the link.</li><li>In Happ tap “+” → “Paste from clipboard”.</li><li>Pick “🇪🇺 Auto” and switch it on.</li></ol>
+        </details>
+      </li>
+      
+      <li class="app-row">
+        <span class="app-name">v2RayTun</span>
+        <span class="app-desc">Light and quick, with handy automatic server choice.</span>
+        <span class="app-acts">
+          <a class="app-get" href="https://play.google.com/store/apps/details?id=com.v2raytun.android" target="_blank" rel="noopener">Get it<small>Google Play</small></a>
+          
+        </span>
+        <details class="app-how">
+          <summary>How to connect</summary>
+          <ol><li>Tap “Add subscription” in the bot, or copy the link.</li><li>In v2RayTun tap “+” → “Import from clipboard”.</li><li>Pick a server and switch it on.</li></ol>
+        </details>
+      </li>
+      
+      <li class="app-row">
+        <span class="app-name">Hiddify</span>
+        <span class="app-desc">Open source and the same on every system.</span>
+        <span class="app-acts">
+          <a class="app-get" href="https://app.hiddify.com/play" target="_blank" rel="noopener">Get it<small>Google Play</small></a>
+          
+        </span>
+        <details class="app-how">
+          <summary>How to connect</summary>
+          <ol><li>Tap “Add subscription” in the bot, or copy the link.</li><li>In Hiddify: “New profile” → “Add from clipboard”.</li><li>Press the big connect button.</li></ol>
+        </details>
+      </li>
+      
+      <li class="app-row">
+        <span class="app-name">v2rayNG</span>
+        <span class="app-desc">The Android classic for people who like settings.</span>
+        <span class="app-acts">
+          <a class="app-get" href="https://github.com/2dust/v2rayNG/releases" target="_blank" rel="noopener">Get it<small>GitHub, APK</small></a>
+          
+        </span>
+        <details class="app-how">
+          <summary>How to connect</summary>
+          <ol><li>Copy your subscription link in the bot.</li><li>Menu → “Subscription group” → “+”, paste the link into URL, save.</li><li>On the main screen ⋮ → “Update subscription”, pick a server, press ▶.</li></ol>
+        </details>
+      </li>
+      
+    </ol>
+    <p class="plat-note">No Google Play, or the app won&#39;t show up? Incy, Hiddify and v2rayNG ship APK files on GitHub.</p>
+  </div>
+  
+  <div class="plat-pane" role="tabpanel" id="pane-windows" aria-labelledby="tab-windows" hidden>
+    <ol class="app-rows">
+      
+      <li class="app-row">
+        <span class="app-name">Incy<em class="app-pick">start here</em></span>
+        <span class="app-desc">The simplest: paste the link and connect. The current crowd favourite.</span>
+        <span class="app-acts">
+          <a class="app-get" href="https://github.com/INCY-DEV/incy-platforms/releases" target="_blank" rel="noopener">Get it<small>GitHub</small></a>
+          
+        </span>
+        <details class="app-how">
+          <summary>How to connect</summary>
+          <ol><li>Copy your subscription link in the bot.</li><li>Open Incy, tap “+” and paste the link.</li><li>Tap connect.</li></ol>
+        </details>
+      </li>
+      
+      <li class="app-row">
+        <span class="app-name">Happ</span>
+        <span class="app-desc">Picks the fastest server itself and opens Russian sites directly.</span>
+        <span class="app-acts">
+          <a class="app-get" href="https://www.happ.su/main" target="_blank" rel="noopener">Get it<small>happ.su</small></a>
+          
+        </span>
+        <details class="app-how">
+          <summary>How to connect</summary>
+          <ol><li>Tap “Add subscription” in the bot, or copy the link.</li><li>In Happ tap “+” → “Paste from clipboard”.</li><li>Pick “🇪🇺 Auto” and switch it on.</li></ol>
+        </details>
+      </li>
+      
+      <li class="app-row">
+        <span class="app-name">Hiddify</span>
+        <span class="app-desc">Open source and the same on every system.</span>
+        <span class="app-acts">
+          <a class="app-get" href="https://app.hiddify.com/windows" target="_blank" rel="noopener">Get it<small>hiddify.com</small></a>
+          
+        </span>
+        <details class="app-how">
+          <summary>How to connect</summary>
+          <ol><li>Tap “Add subscription” in the bot, or copy the link.</li><li>In Hiddify: “New profile” → “Add from clipboard”.</li><li>Press the big connect button.</li></ol>
+        </details>
+      </li>
+      
+      <li class="app-row">
+        <span class="app-name">v2rayN</span>
+        <span class="app-desc">For power users: lots of settings and routing.</span>
+        <span class="app-acts">
+          <a class="app-get" href="https://github.com/2dust/v2rayN/releases" target="_blank" rel="noopener">Get it<small>GitHub</small></a>
+          
+        </span>
+        <details class="app-how">
+          <summary>How to connect</summary>
+          <ol><li>Copy your subscription link in the bot.</li><li>“Subscription” → “Subscription settings” → “Add”, paste the link into URL.</li><li>“Subscription” → “Update”, pick a server, turn on TUN or system proxy.</li></ol>
+        </details>
+      </li>
+      
+    </ol>
+    <p class="plat-note">Turn on TUN (or “VPN mode”) in the app so every program goes through INOK, not just the browser.</p>
+  </div>
+  
+  <div class="plat-pane" role="tabpanel" id="pane-macos" aria-labelledby="tab-macos" hidden>
+    <ol class="app-rows">
+      
+      <li class="app-row">
+        <span class="app-name">Happ<em class="app-pick">start here</em></span>
+        <span class="app-desc">Picks the fastest server itself and opens Russian sites directly.</span>
+        <span class="app-acts">
+          <a class="app-get" href="https://apps.apple.com/app/happ-proxy-utility/id6504287215" target="_blank" rel="noopener">Get it<small>App Store</small></a>
+          
+        </span>
+        <details class="app-how">
+          <summary>How to connect</summary>
+          <ol><li>Tap “Add subscription” in the bot, or copy the link.</li><li>In Happ tap “+” → “Paste from clipboard”.</li><li>Pick “🇪🇺 Auto” and switch it on.</li></ol>
+        </details>
+      </li>
+      
+      <li class="app-row">
+        <span class="app-name">Incy</span>
+        <span class="app-desc">The simplest: paste the link and connect. The current crowd favourite.</span>
+        <span class="app-acts">
+          <a class="app-get" href="https://github.com/INCY-DEV/incy-platforms/releases" target="_blank" rel="noopener">Get it<small>GitHub</small></a>
+          
+        </span>
+        <details class="app-how">
+          <summary>How to connect</summary>
+          <ol><li>Copy your subscription link in the bot.</li><li>Open Incy, tap “+” and paste the link.</li><li>Tap connect.</li></ol>
+        </details>
+      </li>
+      
+      <li class="app-row">
+        <span class="app-name">Hiddify</span>
+        <span class="app-desc">Open source and the same on every system.</span>
+        <span class="app-acts">
+          <a class="app-get" href="https://app.hiddify.com/mac" target="_blank" rel="noopener">Get it<small>hiddify.com</small></a>
+          
+        </span>
+        <details class="app-how">
+          <summary>How to connect</summary>
+          <ol><li>Tap “Add subscription” in the bot, or copy the link.</li><li>In Hiddify: “New profile” → “Add from clipboard”.</li><li>Press the big connect button.</li></ol>
+        </details>
+      </li>
+      
+      <li class="app-row">
+        <span class="app-name">v2rayN</span>
+        <span class="app-desc">For power users: lots of settings and routing.</span>
+        <span class="app-acts">
+          <a class="app-get" href="https://github.com/2dust/v2rayN/releases" target="_blank" rel="noopener">Get it<small>GitHub</small></a>
+          
+        </span>
+        <details class="app-how">
+          <summary>How to connect</summary>
+          <ol><li>Copy your subscription link in the bot.</li><li>“Subscription” → “Subscription settings” → “Add”, paste the link into URL.</li><li>“Subscription” → “Update”, pick a server, turn on TUN or system proxy.</li></ol>
+        </details>
+      </li>
+      
+    </ol>
+    <p class="plat-note">Macs with Apple silicon can also run the iPhone apps from the App Store.</p>
+  </div>
+  
+  <div class="plat-pane" role="tabpanel" id="pane-linux" aria-labelledby="tab-linux" hidden>
+    <ol class="app-rows">
+      
+      <li class="app-row">
+        <span class="app-name">Hiddify<em class="app-pick">start here</em></span>
+        <span class="app-desc">Open source and the same on every system.</span>
+        <span class="app-acts">
+          <a class="app-get" href="https://app.hiddify.com/linux" target="_blank" rel="noopener">Get it<small>AppImage</small></a>
+          
+        </span>
+        <details class="app-how">
+          <summary>How to connect</summary>
+          <ol><li>Tap “Add subscription” in the bot, or copy the link.</li><li>In Hiddify: “New profile” → “Add from clipboard”.</li><li>Press the big connect button.</li></ol>
+        </details>
+      </li>
+      
+      <li class="app-row">
+        <span class="app-name">Incy</span>
+        <span class="app-desc">The simplest: paste the link and connect. The current crowd favourite.</span>
+        <span class="app-acts">
+          <a class="app-get" href="https://github.com/INCY-DEV/incy-platforms/releases" target="_blank" rel="noopener">Get it<small>GitHub</small></a>
+          
+        </span>
+        <details class="app-how">
+          <summary>How to connect</summary>
+          <ol><li>Copy your subscription link in the bot.</li><li>Open Incy, tap “+” and paste the link.</li><li>Tap connect.</li></ol>
+        </details>
+      </li>
+      
+      <li class="app-row">
+        <span class="app-name">v2rayN</span>
+        <span class="app-desc">For power users: lots of settings and routing.</span>
+        <span class="app-acts">
+          <a class="app-get" href="https://github.com/2dust/v2rayN/releases" target="_blank" rel="noopener">Get it<small>GitHub</small></a>
+          
+        </span>
+        <details class="app-how">
+          <summary>How to connect</summary>
+          <ol><li>Copy your subscription link in the bot.</li><li>“Subscription” → “Subscription settings” → “Add”, paste the link into URL.</li><li>“Subscription” → “Update”, pick a server, turn on TUN or system proxy.</li></ol>
+        </details>
+      </li>
+      
+    </ol>
+    <p class="plat-note">Hiddify ships as an AppImage: download, mark it executable, run. Nothing to install.</p>
+  </div>
+  
+  <div class="plat-pane" role="tabpanel" id="pane-tv" aria-labelledby="tab-tv" hidden>
+    <ol class="app-rows">
+      
+      <li class="app-row">
+        <span class="app-name">Happ<em class="app-pick">start here</em></span>
+        <span class="app-desc">Picks the fastest server itself and opens Russian sites directly.</span>
+        <span class="app-acts">
+          <a class="app-get" href="https://play.google.com/store/apps/details?id=com.happproxy" target="_blank" rel="noopener">Get it<small>Google Play</small></a>
+          
+        </span>
+        <details class="app-how">
+          <summary>How to connect</summary>
+          <ol><li>Tap “Add subscription” in the bot, or copy the link.</li><li>In Happ tap “+” → “Paste from clipboard”.</li><li>Pick “🇪🇺 Auto” and switch it on.</li></ol>
+        </details>
+      </li>
+      
+      <li class="app-row">
+        <span class="app-name">Incy</span>
+        <span class="app-desc">The simplest: paste the link and connect. The current crowd favourite.</span>
+        <span class="app-acts">
+          <a class="app-get" href="https://play.google.com/store/apps/details?id=llc.itdev.incy" target="_blank" rel="noopener">Get it<small>Google Play</small></a>
+          
+        </span>
+        <details class="app-how">
+          <summary>How to connect</summary>
+          <ol><li>Copy your subscription link in the bot.</li><li>Open Incy, tap “+” and paste the link.</li><li>Tap connect.</li></ol>
+        </details>
+      </li>
+      
+      <li class="app-row">
+        <span class="app-name">v2RayTun</span>
+        <span class="app-desc">Light and quick, with handy automatic server choice.</span>
+        <span class="app-acts">
+          <a class="app-get" href="https://play.google.com/store/apps/details?id=com.v2raytun.android" target="_blank" rel="noopener">Get it<small>Google Play</small></a>
+          
+        </span>
+        <details class="app-how">
+          <summary>How to connect</summary>
+          <ol><li>Tap “Add subscription” in the bot, or copy the link.</li><li>In v2RayTun tap “+” → “Import from clipboard”.</li><li>Pick a server and switch it on.</li></ol>
+        </details>
+      </li>
+      
+    </ol>
+    <p class="plat-note">Typing the link with a remote is slow: open our bot in Telegram on the TV, or send the link there from your phone.</p>
+  </div>
+  
+</div>
+
+</section>
+
+<section class="faq" id="faq" aria-labelledby="faq-title">
+  <h2 class="h2" id="faq-title" data-split>Questions</h2>
+  
+  
+  <details>
+    <summary>Why does INOK work when other VPNs get blocked?</summary>
+    <div class="faq-a"><p>We use VLESS Reality. To your provider your traffic looks like an ordinary HTTPS website visit, so it is hard to tell apart and block. If something does get blocked, we change the address and your subscription updates itself.</p></div>
+  </details>
+  
+  <details>
+    <summary>Which app should I pick?</summary>
+    <div class="faq-a"><p>If you don&#39;t want to tinker, take Incy or Happ: paste the link and connect. Happ also opens Russian sites directly, outside the VPN, so banks don&#39;t complain.</p></div>
+  </details>
+  
+  <details>
+    <summary>What if I lose my account number?</summary>
+    <div class="faq-a"><p>No problem: access is tied to your Telegram. Open the bot, tap “My access”, and the number and link are there.</p></div>
+  </details>
+  
+  <details>
+    <summary>How do I pay?</summary>
+    <div class="faq-a"><p>By card transfer or SBP. You attach the receipt and we check it by hand, usually within an hour during the day. Days add to your current term, nothing is lost.</p></div>
+  </details>
+  
+  <details>
+    <summary>Will INOK remove ads?</summary>
+    <div class="faq-a"><p>On sites and in apps, most of it: the server blocks ad networks and trackers, plus malware and phishing sites. Ads inside YouTube can&#39;t be removed this way: they come from the same servers as the video. For those you need a browser blocker or YouTube Premium.</p></div>
+  </details>
+  
+  <details>
+    <summary>How many devices can I connect?</summary>
+    <div class="faq-a"><p>Three at once on any plan: a phone, a laptop and one more.</p></div>
+  </details>
+  
+  <details>
+    <summary>Is there a referral bonus?</summary>
+    <div class="faq-a"><p>Yes. Your link is in the bot, under “Invite a friend”. When a friend pays for any plan, you get a week added.</p></div>
+  </details>
+  
+  <details>
+    <summary>It doesn&#39;t work. What now?</summary>
+    <div class="faq-a"><p>Refresh the subscription in the app and choose “Auto-select”. If that fails, send support your account number and what you see on screen: we answer fast.</p></div>
+  </details>
+  
+</section>
+
+<section class="final">
+  <p class="final-word" aria-hidden="true"><span class="fw-out">INOK</span><span class="fw-in" id="fw-in">INOK</span></p>
+  <p class="final-line">Silence starts with one day.</p>
+  <a class="btn btn-solid btn-lg" href="https://t.me/inokvpn_bot?start=trial" data-magnet>Take a free day</a>
+</section>
+</main>
+
+  <footer class="foot">
+    <div class="foot-row">
+      <a class="foot-brand" href="/en/">INOK</a>
+      <span class="foot-copy">The VPN that keeps quiet. We keep no history of your connections or the sites you visit.</span>
+    </div>
+    <div class="foot-row foot-links">
+      <a href="https://t.me/inok_admin" rel="noopener">Support on Telegram</a>
+      <a href="https://t.me/inokvpn" rel="noopener">INOK channel</a>
+      <a href="#apps">Apps</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://t.me/inokvpn_bot" rel="noopener">INOK bot</a>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="/static/js/site.js?v=5"></script>
+  <script src="/static/js/hero.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>INOK для Chrome</title>
+  <meta name="description" content="Расширение INOK: VPN прямо в браузере, один ключ и одна кнопка.">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@600;700&family=Onest:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap&subset=cyrillic" rel="stylesheet">
+  <link rel="stylesheet" href="/static/tg/app.css?v=2">
+  <style>
+    #app { max-width: 720px; padding-top: 28px; padding-bottom: 60px; }
+    .hero { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; margin-bottom: 8px; }
+    .hero h1 { font: 700 clamp(40px, 8vw, 64px)/.95 var(--serif); margin: 0 0 14px; }
+    .hero p { color: var(--ash); max-width: 46ch; margin: 0 0 22px; font-size: 16px; }
+    .hero .candle { width: 120px; height: 200px; }
+    .dl { display: flex; gap: 10px; flex-wrap: wrap; }
+    .dl .btn { width: auto; padding: 0 22px; }
+    ol.how { list-style: none; counter-reset: s; padding: 0; margin: 0; display: grid; gap: 10px; }
+    ol.how li { counter-increment: s; display: grid; grid-template-columns: 40px 1fr; gap: 14px; align-items: start; background: var(--coal); border: 1px solid var(--line); border-radius: 18px; padding: 16px; }
+    ol.how li::before { content: counter(s); width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font: 600 22px var(--serif); color: var(--candle); border: 1px solid var(--line); }
+    ol.how b { display: block; margin: 7px 0 4px; font-size: 16px; }
+    ol.how p { margin: 0; color: var(--ash); font-size: 14px; }
+    ol.how .copy { margin-top: 10px; width: auto; display: inline-flex; word-break: normal; white-space: nowrap; }
+    kbd { font: 13px var(--mono); background: var(--soot); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; color: var(--bone); }
+    @media (max-width: 560px) { .hero { grid-template-columns: 1fr; } .hero .candle { display: none; } }
+  </style>
+</head>
+<body>
+  <main id="app">
+    <section class="hero">
+      <div>
+        <h1>INOK в браузере</h1>
+        <p>Расширение для Chrome, Edge, Яндекс Браузера, Brave и Opera. Без приложений: вводите ключ из бота и зажигаете свечу. Российские сайты открываются напрямую.</p>
+        <div class="dl">
+          <a class="btn btn-gold" href="/static/ext/inok-extension.zip" download>Скачать расширение</a>
+          <a class="btn btn-line" href="https://t.me/inokvpn_bot?start=ext" target="_blank" rel="noopener">Ключ в боте</a>
+        </div>
+      </div>
+      <svg class="candle" viewBox="0 0 112 210" aria-hidden="true">
+        <defs><radialGradient id="h"><stop offset="0" stop-color="#F0B44C" stop-opacity=".5"/><stop offset="1" stop-color="#F0B44C" stop-opacity="0"/></radialGradient>
+        <linearGradient id="w" x1="0" x2="1"><stop offset="0" stop-color="#cfcabf"/><stop offset=".45" stop-color="#E6E3DC"/><stop offset="1" stop-color="#a9a499"/></linearGradient></defs>
+        <ellipse class="halo" cx="56" cy="44" rx="34" ry="38" fill="url(#h)"/>
+        <path class="flame" d="M56 20C63 32 68 40 68 48 68 56 62 61 56 61 50 61 44 56 44 48 44 40 49 32 56 20Z" fill="#F0B44C"/>
+        <path class="flame" d="M56 36C59 42 61 46 61 50 61 54 59 56 56 56 53 56 51 54 51 50 51 46 53 42 56 36Z" fill="#fff4d6"/>
+        <rect x="55" y="59" width="2" height="8" rx="1" fill="#2a2723"/>
+        <rect x="38" y="66" width="36" height="130" rx="5" fill="url(#w)"/>
+        <rect x="18" y="194" width="76" height="6" rx="3" fill="#2a2723"/>
+      </svg>
+    </section>
+
+    <div class="block">
+      <h3>Как установить</h3>
+      <ol class="how">
+        <li><div><b>Скачайте и распакуйте архив</b><p>Нажмите «Скачать расширение», затем распакуйте zip. Появится папка <kbd>inok-extension</kbd>. Положите её туда, где она не потеряется: браузер берёт расширение прямо из неё.</p></div></li>
+        <li><div><b>Откройте страницу расширений</b><p>Скопируйте адрес и вставьте его в адресную строку браузера.</p><button class="copy" data-copy="chrome://extensions">chrome://extensions<em>Копировать</em></button></div></li>
+        <li><div><b>Включите «Режим разработчика»</b><p>Переключатель в правом верхнем углу страницы расширений.</p></div></li>
+        <li><div><b>Нажмите «Загрузить распакованное»</b><p>Выберите папку <kbd>inok-extension</kbd>. Значок INOK появится рядом с адресной строкой; закрепите его кнопкой с пазлом.</p></div></li>
+        <li><div><b>Введите ключ</b><p>Ключ в боте: «🧩 Расширение для Chrome». Нажмите на значок INOK, вставьте ключ, и свеча загорится.</p></div></li>
+      </ol>
+    </div>
+
+    <div class="block">
+      <h3>Важно знать</h3>
+      <details class="faq"><summary>Это защищает весь компьютер?</summary><p>Нет, только браузер. Для всех программ и телефона используйте приложение по ссылке-подписке из бота.</p></details>
+      <details class="faq"><summary>Почему не из магазина Chrome?</summary><p>Мы готовим публикацию в Chrome Web Store. Пока расширение ставится вручную, это безопасно: весь код открыт в папке, которую вы скачали.</p></details>
+      <details class="faq"><summary>Браузер пишет про режим разработчика</summary><p>Так Chrome предупреждает обо всех расширениях не из магазина. Закройте подсказку: расширение продолжит работать.</p></details>
+      <details class="faq"><summary>Сколько стоит?</summary><p>Ничего дополнительно. Ключ работает, пока активна ваша подписка INOK. Не передавайте его другим: ключ привязан к вашему аккаунту.</p></details>
+    </div>
+  </main>
+  <div class="toast" id="toast" role="status"></div>
+  <script>
+    document.addEventListener("click", async (e) => {
+      const b = e.target.closest("[data-copy]");
+      if (!b) return;
+      try { await navigator.clipboard.writeText(b.dataset.copy); } catch (_) {}
+      const t = document.getElementById("toast");
+      t.textContent = "Скопировано"; t.classList.add("show");
+      setTimeout(() => t.classList.remove("show"), 1800);
+    });
+  </script>
+</body>
+</html>
